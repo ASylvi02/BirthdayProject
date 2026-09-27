@@ -1,9 +1,508 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Birthday Project Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#241338">
+    <title>My Partner's Birthday Quest</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <main>
+        <section class="lock-screen" id="lock-screen" aria-labelledby="lock-title">
+            <header class="title-bar">
+                <p class="title-wordmark"><span aria-hidden="true">✦</span> KYLE'S BIRTHDAY QUEST</p>
+                <p class="title-build">PLAYER TWO EDITION <span>NO. 01</span></p>
+            </header>
+            <div class="title-layout">
+                <div class="title-copy">
+                    <p class="eyebrow">A BIRTHDAY QUEST AWAITS</p>
+                    <div class="title-character-row">
+                        <div class="lock-icon" aria-hidden="true">✦</div>
+                        <div class="pixel-buddy" aria-hidden="true"><span></span><i></i></div>
+                        <span class="character-caption">NEW PLAYER DETECTED</span>
+                    </div>
+                    <h1 id="lock-title">KYLE!<br><span>YOUR QUEST<br>BEGINS!</span></h1>
+                    <p class="lock-copy">I made you a little birthday gift, Kyle. Enter our secret password and come see what I hid for you.</p>
+                    <div class="save-details"><span>SAVE FILE <strong>01</strong></span><span>CO-OP MODE <strong>ON</strong></span></div>
+                </div>
+                <section class="start-console" aria-label="Continue to birthday quest">
+                    <div class="console-header"><span>CONTINUE GAME</span><span class="console-ready"><i></i> READY</span></div>
+                    <p class="console-copy">ENTER YOUR SECRET WORD TO LOAD THE SAVE FILE.</p>
+                    <form id="unlock-form">
+                        <label for="passcode">Your secret word</label>
+                        <div class="input-row">
+                            <input id="passcode" name="passcode" type="password" autocomplete="off" placeholder="Enter password..." required aria-describedby="password-hint form-message">
+                            <button class="unlock-button" type="submit">START GAME <span aria-hidden="true">▶</span></button>
+                        </div>
+                        <p class="password-hint" id="password-hint">HINT: Our signature password for Terraria servers!</p>
+                        <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+                    </form>
+                    <p class="lock-footnote">MADE WITH LOVE BY <span>AUBREY</span></p>
+                </section>
+            </div>
+            <footer class="title-footer"><span>1 PLAYER <i>·</i> BIRTHDAY MODE</span><span><b aria-hidden="true">▶</b> PRESS START TO CONTINUE</span></footer>
+            <span class="orbit orbit-one" aria-hidden="true">✳</span>
+            <span class="orbit orbit-two" aria-hidden="true">✿</span>
+        </section>
 
+        <section class="birthday-screen" id="birthday-screen" aria-labelledby="birthday-title" hidden>
+            <header class="topline">
+                <a class="wordmark" href="#top" aria-label="Birthday surprise home"><span>✦</span> AUBREY'S SAVE FILE FOR KYLE</a>
+                <span class="edition-note">KYLE'S BIRTHDAY WORLD!</span>
+            </header>
+
+            <section class="hero" id="top">
+                <div class="hero-copy">
+                    <div class="player-hud" aria-label="Player status">
+                        <div class="player-avatar" aria-hidden="true">K</div>
+                        <div class="player-name"><span>PLAYER TWO</span><strong>KYLE</strong></div>
+                        <div class="player-level"><span>LVL</span><strong>+1</strong></div>
+                        <div class="player-energy"><label for="birthday-energy">BIRTHDAY ENERGY</label><progress id="birthday-energy" value="100" max="100">100%</progress></div>
+                    </div>
+                    <p class="eyebrow">★ LEVEL UP! ★</p>
+                    <h1 id="birthday-title">HAPPY<br>BIRTHDAY,<br><em>KYLE!</em><span class="title-sparkle" aria-hidden="true">✦</span></h1>
+                    <p class="hero-intro">You gained +1 year and somehow +100 awesome. I'm so lucky you're my favorite co-op partner. I love doing life with you!</p>
+                    <nav class="game-menu" aria-label="Birthday game menu">
+                        <div class="game-menu-heading"><span>SELECT A QUEST</span><span>1P</span></div>
+                        <button class="game-menu-option main-quest" id="menu-start-wish" type="button">
+                            <span class="menu-arrow" aria-hidden="true">▶</span>
+                            <span class="menu-option-copy"><small>MAIN QUEST</small><strong>MAKE A WISH</strong></span>
+                            <kbd>ENTER</kbd>
+                        </button>
+                        <a class="game-menu-option" href="#photo-booth" data-menu-status="PHOTO QUEST SELECTED">
+                            <span class="menu-arrow" aria-hidden="true">▶</span>
+                            <span class="menu-option-copy"><small>EXTRA QUEST</small><strong>PHOTO BOOTH</strong></span>
+                            <kbd>GO</kbd>
+                        </a>
+                        <a class="game-menu-option" href="#bonus-stage" data-menu-status="BONUS LOOT SELECTED">
+                            <span class="menu-arrow" aria-hidden="true">▶</span>
+                            <span class="menu-option-copy"><small>HIDDEN AREA</small><strong>FIND THE CHEST</strong></span>
+                            <kbd>GO</kbd>
+                        </a>
+                    </nav>
+                    <p class="menu-status" role="status" aria-live="polite"><span aria-hidden="true">▶</span> <span id="menu-status-text">YOUR ADVENTURE IS READY</span></p>
+                </div>
+
+            </section>
+
+            <section class="wish-quest game-reveal" aria-labelledby="wish-quest-title">
+                <div class="wish-quest-heading">
+                    <p class="eyebrow">MAIN QUEST · WISH SHRINE</p>
+                    <h2 id="wish-quest-title">A wish for your next level</h2>
+                    <p>Your quest starts when you're ready. Make it a good one!</p>
+                </div>
+                <div class="cake-stage" id="wish" aria-label="Interactive birthday cake">
+                    <div class="cake-note">ITEM GET!<br>★ CAKE ★</div>
+                    <div class="cake-sparkle sparkle-left" aria-hidden="true">✦</div>
+                    <div class="cake-sparkle sparkle-right" aria-hidden="true">✳</div>
+                    <div class="cake" id="cake" role="group" aria-label="Birthday cake with three candles">
+                        <div class="candles" aria-label="Candles. Click a flame to blow it out.">
+                            <button class="candle" type="button" aria-label="Blow out candle 1"><span class="flame"></span><span class="wick"></span><span class="candle-body"></span></button>
+                            <button class="candle" type="button" aria-label="Blow out candle 2"><span class="flame"></span><span class="wick"></span><span class="candle-body"></span></button>
+                            <button class="candle" type="button" aria-label="Blow out candle 3"><span class="flame"></span><span class="wick"></span><span class="candle-body"></span></button>
+                        </div>
+                        <div class="cake-top"><span class="icing-drip drip-one"></span><span class="icing-drip drip-two"></span><span class="icing-drip drip-three"></span></div>
+                        <div class="cake-layer cake-layer-top"><i></i><i></i><i></i></div>
+                        <div class="cake-layer cake-layer-bottom"><i></i><i></i><i></i><i></i></div>
+                        <div class="cake-plate"></div>
+                    </div>
+                    <p class="cake-instruction" id="cake-message" aria-live="polite">A LITTLE CAKE, AND A WISH JUST FOR YOU.</p>
+                    <button class="blow-button" id="begin-wish" type="button"><span aria-hidden="true">★</span> BEGIN MAKING A WISH</button>
+                    <button class="blow-button" id="blow-button" type="button" hidden><span aria-hidden="true">★</span> BLOW OUT THE CANDLES</button>
+                    <button class="wish-exit" id="wish-exit" type="button" hidden>BACK TO THE PARTY</button>
+                    <button class="blow-button" id="retry-wish" type="button" hidden><span aria-hidden="true">★</span> MAKE ANOTHER WISH?</button>
+                </div>
+            </section>
+
+            <section class="photo-booth game-reveal" id="photo-booth" aria-labelledby="photo-booth-title">
+                <div class="photo-booth-copy">
+                    <p class="eyebrow">AUBREY + KYLE · PHOTO BOOTH</p>
+                    <h2 id="photo-booth-title">Let's make a birthday memory!</h2>
+                    <p>Turn on your camera and strike three poses. I made you a proper little photo strip, and it all stays on your device.</p>
+                </div>
+                <div class="booth-frame">
+                    <div class="booth-screen">
+                        <video id="camera-preview" autoplay playsinline muted aria-label="Live camera preview" hidden></video>
+                        <img id="captured-photo" alt="Your finished three-photo birthday photostrip" hidden>
+                        <div class="camera-placeholder" id="camera-placeholder" aria-hidden="true">
+                            <span>☺</span>
+                            <p>READY, PLAYER TWO?</p>
+                        </div>
+                    </div>
+                    <div class="photo-controls">
+                        <button class="booth-button" id="start-camera" type="button">TURN ON CAMERA</button>
+                        <button class="booth-button" id="take-photo" type="button" disabled>SNAP 1 OF 3</button>
+                        <button class="booth-button" id="retake-photo" type="button" hidden>START STRIP OVER</button>
+                        <a class="booth-button download-photo" id="download-photo" download="kyle-birthday-photostrip.png" hidden>DOWNLOAD MY STRIP</a>
+                        <button class="booth-button booth-stop" id="stop-camera" type="button" hidden>TURN CAMERA OFF</button>
+                    </div>
+                    <p class="photo-count" id="photo-count" aria-live="polite">0 / 3 PHOTOS</p>
+                    <p class="camera-status" id="camera-status" role="status" aria-live="polite">Your camera only works after you press the button above.</p>
+                </div>
+                <canvas id="photo-canvas" hidden></canvas>
+                <canvas id="photostrip-canvas" hidden></canvas>
+            </section>
+
+            <section class="bonus-stage game-reveal" id="bonus-stage" aria-labelledby="bonus-title">
+                <div class="bonus-copy">
+                    <p class="eyebrow">I HID YOU A PRESENT!</p>
+                    <h2 id="bonus-title">A chest! I wonder what's inside...</h2>
+                    <p>I picked out a little something just for you. Go on, open it!</p>
+                </div>
+                <div class="chest-area">
+                    <button class="treasure-chest" id="treasure-chest" type="button" aria-label="Open the treasure chest" aria-expanded="false" aria-controls="loot-reveal">
+                        <span class="chest-lid"><span></span></span>
+                        <span class="chest-box"><span class="chest-lock">★</span></span>
+                    </button>
+                    <p class="chest-prompt" id="chest-prompt">[ CLICK TO OPEN ]</p>
+                    <div class="loot-reveal" id="loot-reveal" aria-live="polite" hidden>
+                        <span class="loot-star" aria-hidden="true">★</span>
+                        <p><strong>DATE NIGHT UNLOCKED!</strong><br>Pick any place for date night. You choose the location; I pay!</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="letter-section game-reveal" aria-labelledby="letter-title">
+                <div class="letter-mark" aria-hidden="true">♥</div>
+                <div class="letter-content">
+                    <p class="eyebrow">QUEST LOG: A NOTE FOR YOU</p>
+                    <h2 id="letter-title">To my favorite person,</h2>
+                    <p>Kyle, every adventure is better with you in my party. Thank you for making even ordinary days feel special. I love you, and I hope this next trip around the sun brings you a whole inventory of good things.</p>
+                    <p class="letter-signoff">All my love, <span>Aubrey</span></p>
+                </div>
+                <div class="letter-stamp" aria-hidden="true">FOR<br>YOU<br>♥</div>
+            </section>
+
+            <footer class="footer-note">Kyle's birthday world, made with love by Aubrey <span aria-hidden="true">✳</span></footer>
+        </section>
+        <div class="wish-overlay" id="wish-overlay" hidden aria-modal="true" role="dialog" aria-label="Make a birthday wish"></div>
+        <div class="confetti-layer" id="confetti-layer" aria-hidden="true" hidden></div>
+    </main>
+
+    <script>
+        const unlockForm = document.querySelector('#unlock-form');
+        const passcodeInput = document.querySelector('#passcode');
+        const passwordHint = document.querySelector('#password-hint');
+        const formMessage = document.querySelector('#form-message');
+        const lockScreen = document.querySelector('#lock-screen');
+        const birthdayScreen = document.querySelector('#birthday-screen');
+        const cakeStage = document.querySelector('.cake-stage');
+        const cakeStageHome = cakeStage.parentElement;
+        const wishOverlay = document.querySelector('#wish-overlay');
+        const beginWishButton = document.querySelector('#begin-wish');
+        const menuStartWishButton = document.querySelector('#menu-start-wish');
+        const menuStatusText = document.querySelector('#menu-status-text');
+        const candles = [...document.querySelectorAll('.candle')];
+        const cakeMessage = document.querySelector('#cake-message');
+        const blowButton = document.querySelector('#blow-button');
+        const wishExitButton = document.querySelector('#wish-exit');
+        const retryWishButton = document.querySelector('#retry-wish');
+        const confettiLayer = document.querySelector('#confetti-layer');
+        const treasureChest = document.querySelector('#treasure-chest');
+        const lootReveal = document.querySelector('#loot-reveal');
+        const chestPrompt = document.querySelector('#chest-prompt');
+        const cameraPreview = document.querySelector('#camera-preview');
+        const capturedPhoto = document.querySelector('#captured-photo');
+        const boothScreen = document.querySelector('.booth-screen');
+        const cameraPlaceholder = document.querySelector('#camera-placeholder');
+        const cameraStatus = document.querySelector('#camera-status');
+        const startCameraButton = document.querySelector('#start-camera');
+        const takePhotoButton = document.querySelector('#take-photo');
+        const retakePhotoButton = document.querySelector('#retake-photo');
+        const downloadPhotoLink = document.querySelector('#download-photo');
+        const stopCameraButton = document.querySelector('#stop-camera');
+        const photoCanvas = document.querySelector('#photo-canvas');
+        const photostripCanvas = document.querySelector('#photostrip-canvas');
+        const photoCount = document.querySelector('#photo-count');
+        const capturedPhotos = [];
+        let cameraStream;
+
+        unlockForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            if (passcodeInput.value.trim().toLowerCase() !== 'oof') {
+                formMessage.textContent = 'Not quite! Try that little word one more time.';
+                passwordHint.classList.remove('is-wrong');
+                void passwordHint.offsetWidth;
+                passwordHint.classList.add('is-wrong');
+                passcodeInput.select();
+                return;
+            }
+
+            lockScreen.hidden = true;
+            birthdayScreen.hidden = false;
+            document.body.classList.add('is-unlocked');
+            passcodeInput.removeEventListener('input', clearPasswordError);
+            observeGameSections();
+            document.querySelector('#birthday-title').setAttribute('tabindex', '-1');
+            document.querySelector('#birthday-title').focus();
+        });
+
+        function clearPasswordError() {
+            passwordHint.classList.remove('is-wrong');
+            formMessage.textContent = '';
+        }
+
+        passcodeInput.addEventListener('input', clearPasswordError);
+
+        function observeGameSections() {
+            const gameSections = document.querySelectorAll('.game-reveal');
+            if (!('IntersectionObserver' in window)) {
+                gameSections.forEach((section) => section.classList.add('is-visible'));
+                return;
+            }
+
+            const sectionObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('is-visible');
+                    entry.target.classList.remove('is-pending');
+                    observer.unobserve(entry.target);
+                });
+            }, { threshold: 0.12 });
+
+            gameSections.forEach((section) => {
+                section.classList.add('is-pending');
+                sectionObserver.observe(section);
+            });
+        }
+
+        let celebrationTimer;
+
+        function resetWish() {
+            candles.forEach((candle, index) => {
+                candle.classList.remove('is-out');
+                candle.setAttribute('aria-label', `Blow out candle ${index + 1}`);
+            });
+            cakeMessage.textContent = 'A LITTLE CAKE, AND A WISH JUST FOR YOU.';
+            blowButton.disabled = false;
+            blowButton.innerHTML = '<span aria-hidden="true">★</span> BLOW OUT THE CANDLES';
+        }
+
+        function leaveWishMode() {
+            wishOverlay.hidden = true;
+            document.body.classList.remove('is-wishing');
+            birthdayScreen.inert = false;
+            cakeStageHome.append(cakeStage);
+        }
+
+        function beginWish() {
+            resetWish();
+            beginWishButton.hidden = true;
+            retryWishButton.hidden = true;
+            blowButton.hidden = false;
+            wishExitButton.hidden = false;
+            wishOverlay.hidden = false;
+            wishOverlay.append(cakeStage);
+            document.body.classList.add('is-wishing');
+            birthdayScreen.inert = true;
+            candles[0].focus();
+        }
+
+        function showConfetti() {
+            const colors = ['#ffe17a', '#ff75c8', '#72edac', '#d9a8ff', '#fff4ff'];
+            confettiLayer.replaceChildren(...Array.from({ length: 54 }, () => {
+                const piece = document.createElement('span');
+                piece.className = 'confetti-piece';
+                piece.style.left = `${Math.random() * 100}%`;
+                piece.style.setProperty('--confetti-color', colors[Math.floor(Math.random() * colors.length)]);
+                piece.style.setProperty('--confetti-delay', `${Math.random() * 0.8}s`);
+                piece.style.setProperty('--confetti-duration', `${2 + Math.random() * 1.5}s`);
+                piece.style.setProperty('--confetti-drift', `${Math.random() * 160 - 80}px`);
+                return piece;
+            }));
+            confettiLayer.hidden = false;
+            window.clearTimeout(celebrationTimer);
+            celebrationTimer = window.setTimeout(() => {
+                confettiLayer.hidden = true;
+                confettiLayer.replaceChildren();
+            }, 3600);
+        }
+
+        function finishWish() {
+            if (!retryWishButton.hidden) return;
+
+            candles.forEach((candle) => {
+                candle.classList.add('is-out');
+                candle.setAttribute('aria-label', 'Candle is out');
+            });
+            cakeMessage.textContent = 'Wish made. May this be your brightest year yet!';
+            blowButton.hidden = true;
+            wishExitButton.hidden = true;
+            beginWishButton.hidden = true;
+            retryWishButton.hidden = false;
+            leaveWishMode();
+            showConfetti();
+            retryWishButton.focus();
+        }
+
+        candles.forEach((candle) => candle.addEventListener('click', () => {
+            if (wishOverlay.hidden) return;
+            candle.classList.add('is-out');
+            candle.setAttribute('aria-label', 'Candle is out');
+            if (candles.every((item) => item.classList.contains('is-out'))) finishWish();
+        }));
+
+        beginWishButton.addEventListener('click', beginWish);
+        menuStartWishButton.addEventListener('click', () => beginWishButton.click());
+        document.querySelectorAll('.game-menu-option[href]').forEach((option) => {
+            option.addEventListener('click', () => {
+                menuStatusText.textContent = option.dataset.menuStatus;
+            });
+        });
+        retryWishButton.addEventListener('click', beginWish);
+        blowButton.addEventListener('click', finishWish);
+        wishExitButton.addEventListener('click', () => {
+            leaveWishMode();
+            resetWish();
+            blowButton.hidden = true;
+            wishExitButton.hidden = true;
+            beginWishButton.hidden = false;
+            beginWishButton.focus();
+        });
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && !wishOverlay.hidden) wishExitButton.click();
+        });
+
+        treasureChest.addEventListener('click', () => {
+            const isOpen = treasureChest.getAttribute('aria-expanded') === 'true';
+            treasureChest.setAttribute('aria-expanded', String(!isOpen));
+            treasureChest.setAttribute('aria-label', isOpen ? 'Open the treasure chest' : 'Close the treasure chest');
+            lootReveal.hidden = isOpen;
+            chestPrompt.textContent = isOpen ? '[ CLICK TO OPEN ]' : '[ LOOT ACQUIRED! ]';
+        });
+
+        async function startCamera() {
+            if (!navigator.mediaDevices?.getUserMedia) {
+                cameraStatus.textContent = 'Camera access needs a supported browser on HTTPS or localhost. You can still enjoy the rest of the birthday quest!';
+                return;
+            }
+
+            startCameraButton.disabled = true;
+            cameraStatus.textContent = 'Asking your camera to join the party...';
+            try {
+                cameraStream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: 'user' },
+                    audio: false
+                });
+                cameraPreview.srcObject = cameraStream;
+                cameraPreview.hidden = false;
+                capturedPhoto.hidden = true;
+                boothScreen.classList.remove('is-strip');
+                cameraPlaceholder.hidden = true;
+                startCameraButton.hidden = true;
+                retakePhotoButton.hidden = true;
+                downloadPhotoLink.hidden = true;
+                stopCameraButton.hidden = false;
+                takePhotoButton.disabled = false;
+                takePhotoButton.hidden = false;
+                takePhotoButton.textContent = `SNAP ${capturedPhotos.length + 1} OF 3`;
+                photoCount.textContent = `${capturedPhotos.length} / 3 PHOTOS`;
+                cameraStatus.textContent = 'Strike a pose! Nothing is uploaded or saved unless you choose to keep the strip.';
+            } catch (error) {
+                startCameraButton.disabled = false;
+                startCameraButton.hidden = false;
+                takePhotoButton.hidden = true;
+                cameraStatus.textContent = error.name === 'NotAllowedError'
+                    ? 'Camera permission was blocked. Allow camera access in your browser settings, then try again.'
+                    : 'Could not start the camera. Check that it is connected and not being used by another app.';
+            }
+        }
+
+        function stopCamera() {
+            cameraStream?.getTracks().forEach((track) => track.stop());
+            cameraStream = undefined;
+            cameraPreview.srcObject = null;
+            takePhotoButton.disabled = true;
+            stopCameraButton.hidden = true;
+        }
+
+        startCameraButton.addEventListener('click', startCamera);
+        retakePhotoButton.addEventListener('click', () => {
+            capturedPhotos.length = 0;
+            photostripCanvas.width = 0;
+            photostripCanvas.height = 0;
+            capturedPhoto.hidden = true;
+            boothScreen.classList.remove('is-strip');
+            downloadPhotoLink.hidden = true;
+            retakePhotoButton.hidden = true;
+            takePhotoButton.hidden = false;
+            photoCount.textContent = '0 / 3 PHOTOS';
+            startCamera();
+        });
+        stopCameraButton.addEventListener('click', () => {
+            stopCamera();
+            cameraPreview.hidden = true;
+            cameraPlaceholder.hidden = false;
+            startCameraButton.hidden = false;
+            startCameraButton.disabled = false;
+            retakePhotoButton.hidden = true;
+            cameraStatus.textContent = 'Camera off. Your photo booth is ready whenever you are.';
+        });
+
+        takePhotoButton.addEventListener('click', () => {
+            if (!cameraPreview.videoWidth || !cameraPreview.videoHeight) {
+                cameraStatus.textContent = 'One sec! The camera is still getting ready.';
+                return;
+            }
+
+            photoCanvas.width = cameraPreview.videoWidth;
+            photoCanvas.height = cameraPreview.videoHeight;
+            const photoContext = photoCanvas.getContext('2d');
+            photoContext.translate(photoCanvas.width, 0);
+            photoContext.scale(-1, 1);
+            photoContext.drawImage(cameraPreview, 0, 0);
+
+            const frameWidth = 420;
+            const frameHeight = frameWidth * cameraPreview.videoHeight / cameraPreview.videoWidth;
+            const stripPadding = 30;
+            const headerHeight = 82;
+            const frameGap = 18;
+            const footerHeight = 76;
+            if (capturedPhotos.length === 0) {
+                photostripCanvas.width = frameWidth + stripPadding * 2;
+                photostripCanvas.height = headerHeight + frameHeight * 3 + frameGap * 2 + footerHeight;
+                const stripContext = photostripCanvas.getContext('2d');
+                stripContext.fillStyle = '#fff4df';
+                stripContext.fillRect(0, 0, photostripCanvas.width, photostripCanvas.height);
+                stripContext.fillStyle = '#382451';
+                stripContext.textAlign = 'center';
+                stripContext.font = 'bold 22px monospace';
+                stripContext.fillText("KYLE'S BIRTHDAY", photostripCanvas.width / 2, 49);
+            }
+
+            const stripContext = photostripCanvas.getContext('2d');
+            const frameY = headerHeight + capturedPhotos.length * (frameHeight + frameGap);
+            stripContext.drawImage(photoCanvas, stripPadding, frameY, frameWidth, frameHeight);
+            capturedPhotos.push(true);
+            photoCount.textContent = `${capturedPhotos.length} / 3 PHOTOS`;
+
+            if (capturedPhotos.length < 3) {
+                takePhotoButton.textContent = `SNAP ${capturedPhotos.length + 1} OF 3`;
+                cameraStatus.textContent = capturedPhotos.length === 1
+                    ? 'One down! Give me your silliest face next.'
+                    : 'Two down! One last birthday pose!';
+                return;
+            }
+
+            stripContext.fillStyle = '#382451';
+            stripContext.font = 'bold 20px monospace';
+            stripContext.fillText(`AUBREY ♥ KYLE · ${new Date().getFullYear()}`, photostripCanvas.width / 2, photostripCanvas.height - 29);
+            const photostripData = photostripCanvas.toDataURL('image/png');
+            capturedPhoto.src = photostripData;
+            downloadPhotoLink.href = photostripData;
+            cameraPreview.hidden = true;
+            capturedPhoto.hidden = false;
+            boothScreen.classList.add('is-strip');
+            takePhotoButton.hidden = true;
+            startCameraButton.hidden = true;
+            retakePhotoButton.hidden = false;
+            downloadPhotoLink.hidden = false;
+            stopCamera();
+            cameraStatus.textContent = 'Three adorable snapshots! Download your little photo strip to keep it.';
+        });
+
+        window.addEventListener('pagehide', stopCamera);
+    </script>
 </body>
 </html>
