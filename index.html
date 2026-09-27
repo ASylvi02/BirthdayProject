@@ -62,7 +62,7 @@
                     </div>
                     <p class="eyebrow">★ LEVEL UP! ★</p>
                     <h1 id="birthday-title">HAPPY<br>BIRTHDAY,<br><em>KYLE!</em><span class="title-sparkle" aria-hidden="true">✦</span></h1>
-                    <p class="hero-intro">You gained +1 year and somehow +100 awesome. I'm so lucky you're my favorite co-op partner. I love doing life with you!</p>
+                    <p class="hero-intro">You gained +1 year and somehow +100 annoyingness (jk). I'm so lucky to have you in my life. Thank you for being the best boyfriend ever!</p>
                     <nav class="game-menu" aria-label="Birthday game menu">
                         <div class="game-menu-heading"><span>SELECT A QUEST</span><span>1P</span></div>
                         <button class="game-menu-option main-quest" id="menu-start-wish" type="button">
@@ -86,11 +86,35 @@
 
             </section>
 
+            <section class="achievement-tracker" aria-labelledby="achievement-title">
+                <div class="achievement-progress-panel">
+                    <div class="achievement-heading">
+                        <div>
+                            <p class="eyebrow">ACHIEVEMENT TRACKER</p>
+                            <h2 id="achievement-title">Clear every quest</h2>
+                        </div>
+                        <span class="quest-count" id="quest-count" aria-live="polite">0 / 3</span>
+                    </div>
+                    <div class="quest-progress" id="quest-progress" role="progressbar" aria-label="Birthday quests completed" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0" aria-valuetext="0 of 3 quests complete">
+                        <span class="quest-progress-fill" id="quest-progress-fill"></span>
+                    </div>
+                    <ol class="quest-steps">
+                        <li data-quest-step="wish"><span class="quest-step-check" aria-hidden="true">✓</span><span>MAKE A WISH</span></li>
+                        <li data-quest-step="photo"><span class="quest-step-check" aria-hidden="true">✓</span><span>PHOTO STRIP</span></li>
+                        <li data-quest-step="chest"><span class="quest-step-check" aria-hidden="true">✓</span><span>OPEN THE CHEST</span></li>
+                    </ol>
+                </div>
+                <div class="badge-award" id="badge-award" role="status" aria-live="polite" tabindex="-1">
+                    <span class="badge-emblem" aria-hidden="true">★</span>
+                    <span class="badge-copy"><small>FINAL BADGE</small><strong id="badge-name">LOCKED</strong><span id="badge-message">Clear all three quests to unlock.</span></span>
+                </div>
+            </section>
+
             <section class="wish-quest game-reveal" aria-labelledby="wish-quest-title">
                 <div class="wish-quest-heading">
                     <p class="eyebrow">MAIN QUEST · WISH SHRINE</p>
                     <h2 id="wish-quest-title">A wish for your next level</h2>
-                    <p>Your quest starts when you're ready. Make it a good one!</p>
+                    <p>Your quest starts when you're ready. Make it a good one!!</p>
                 </div>
                 <div class="cake-stage" id="wish" aria-label="Interactive birthday cake">
                     <div class="cake-note">ITEM GET!<br>★ CAKE ★</div>
@@ -119,7 +143,7 @@
                 <div class="photo-booth-copy">
                     <p class="eyebrow">AUBREY + KYLE · PHOTO BOOTH</p>
                     <h2 id="photo-booth-title">Let's make a birthday memory!</h2>
-                    <p>Turn on your camera and strike three poses. I made you a proper little photo strip, and it all stays on your device.</p>
+                    <p>Turn on your camera and pose for three photos! You can even save the photostrip onto your device. Enjoy this digital photobooth!.</p>
                 </div>
                 <div class="booth-frame">
                     <div class="booth-screen">
@@ -148,7 +172,7 @@
                 <div class="bonus-copy">
                     <p class="eyebrow">I HID YOU A PRESENT!</p>
                     <h2 id="bonus-title">A chest! I wonder what's inside...</h2>
-                    <p>I picked out a little something just for you. Go on, open it!</p>
+                    <p>Since we can't be together in person, I wanted to give you something special to look forward to!</p>
                 </div>
                 <div class="chest-area">
                     <button class="treasure-chest" id="treasure-chest" type="button" aria-label="Open the treasure chest" aria-expanded="false" aria-controls="loot-reveal">
@@ -158,7 +182,7 @@
                     <p class="chest-prompt" id="chest-prompt">[ CLICK TO OPEN ]</p>
                     <div class="loot-reveal" id="loot-reveal" aria-live="polite" hidden>
                         <span class="loot-star" aria-hidden="true">★</span>
-                        <p><strong>DATE NIGHT UNLOCKED!</strong><br>Pick any place for date night. You choose the location; I pay!</p>
+                        <p><strong>DATE NIGHT UNLOCKED!</strong><br>Pick any place for a cute date night and I will pay! (You can't refuse this offer!)</p>
                     </div>
                 </div>
             </section>
@@ -168,7 +192,7 @@
                 <div class="letter-content">
                     <p class="eyebrow">QUEST LOG: A NOTE FOR YOU</p>
                     <h2 id="letter-title">To my favorite person,</h2>
-                    <p>Kyle, every adventure is better with you in my party. Thank you for making even ordinary days feel special. I love you, and I hope this next trip around the sun brings you a whole inventory of good things.</p>
+                    <p>Kyle, every adventure and memory has been better with you in it. Thank you for making even ordinary days feel special. I love you, and I hope this next trip around the sun brings you a whole inventory of good things!! (And yes, I will still be there to annoy you every second)</p>
                     <p class="letter-signoff">All my love, <span>Aubrey</span></p>
                 </div>
                 <div class="letter-stamp" aria-hidden="true">FOR<br>YOU<br>♥</div>
@@ -178,6 +202,15 @@
         </section>
         <div class="wish-overlay" id="wish-overlay" hidden aria-modal="true" role="dialog" aria-label="Make a birthday wish"></div>
         <div class="confetti-layer" id="confetti-layer" aria-hidden="true" hidden></div>
+        <div class="badge-popup" id="badge-popup" hidden role="dialog" aria-modal="true" aria-labelledby="badge-popup-name" aria-describedby="badge-popup-description">
+            <div class="badge-popup-panel">
+                <p class="eyebrow">ACHIEVEMENT UNLOCKED</p>
+                <span class="badge-popup-emblem" aria-hidden="true">★</span>
+                <h2 id="badge-popup-name">BIRTHDAY WORLD LEGEND</h2>
+                <p id="badge-popup-description">Here is a little badge for completing each activity on this website! :)</p>
+                <button class="booth-button" id="badge-popup-close" type="button">CLAIM BADGE</button>
+            </div>
+        </div>
     </main>
 
     <script>
@@ -193,6 +226,16 @@
         const beginWishButton = document.querySelector('#begin-wish');
         const menuStartWishButton = document.querySelector('#menu-start-wish');
         const menuStatusText = document.querySelector('#menu-status-text');
+        const completedQuests = new Set();
+        const questProgress = document.querySelector('#quest-progress');
+        const questProgressFill = document.querySelector('#quest-progress-fill');
+        const questCount = document.querySelector('#quest-count');
+        const badgeAward = document.querySelector('#badge-award');
+        const badgeName = document.querySelector('#badge-name');
+        const badgeMessage = document.querySelector('#badge-message');
+        const badgePopup = document.querySelector('#badge-popup');
+        const badgePopupName = document.querySelector('#badge-popup-name');
+        const badgePopupClose = document.querySelector('#badge-popup-close');
         const candles = [...document.querySelectorAll('.candle')];
         const cakeMessage = document.querySelector('#cake-message');
         const blowButton = document.querySelector('#blow-button');
@@ -267,6 +310,45 @@
             });
         }
 
+        function completeQuest(quest) {
+            if (completedQuests.has(quest)) return;
+
+            completedQuests.add(quest);
+            const completedCount = completedQuests.size;
+            const questNames = { wish: 'WISH', photo: 'PHOTO STRIP', chest: 'CHEST' };
+            document.querySelector(`[data-quest-step="${quest}"]`).classList.add('is-complete');
+            questCount.textContent = `${completedCount} / 3`;
+            questProgress.setAttribute('aria-valuenow', String(completedCount));
+            questProgress.setAttribute('aria-valuetext', `${completedCount} of 3 quests complete`);
+            questProgressFill.style.width = `${completedCount / 3 * 100}%`;
+            menuStatusText.textContent = `${questNames[quest]} QUEST CLEARED · ${completedCount}/3`;
+
+            if (completedCount === 3) {
+                const unlockedBadgeName = 'BIRTHDAY WORLD LEGEND';
+                badgeName.textContent = unlockedBadgeName;
+                badgePopupName.textContent = unlockedBadgeName;
+                badgeMessage.textContent = 'All quests cleared. Title unlocked!';
+                badgeAward.classList.add('is-unlocked');
+                menuStatusText.textContent = 'ACHIEVEMENT UNLOCKED: BIRTHDAY WORLD LEGEND!';
+                showBadgePopup();
+            }
+        }
+
+        function showBadgePopup() {
+            badgePopup.hidden = false;
+            birthdayScreen.inert = true;
+            document.body.classList.add('has-badge-popup');
+            badgePopupClose.focus();
+        }
+
+        function closeBadgePopup() {
+            if (badgePopup.hidden) return;
+            badgePopup.hidden = true;
+            birthdayScreen.inert = false;
+            document.body.classList.remove('has-badge-popup');
+            badgeAward.focus();
+        }
+
         let celebrationTimer;
 
         function resetWish() {
@@ -332,6 +414,7 @@
             beginWishButton.hidden = true;
             retryWishButton.hidden = false;
             leaveWishMode();
+            completeQuest('wish');
             showConfetti();
             retryWishButton.focus();
         }
@@ -361,7 +444,13 @@
             beginWishButton.focus();
         });
         document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape' && !wishOverlay.hidden) wishExitButton.click();
+            if (event.key !== 'Escape') return;
+            if (!badgePopup.hidden) closeBadgePopup();
+            else if (!wishOverlay.hidden) wishExitButton.click();
+        });
+        badgePopupClose.addEventListener('click', closeBadgePopup);
+        badgePopup.addEventListener('click', (event) => {
+            if (event.target === badgePopup) closeBadgePopup();
         });
 
         treasureChest.addEventListener('click', () => {
@@ -370,6 +459,7 @@
             treasureChest.setAttribute('aria-label', isOpen ? 'Open the treasure chest' : 'Close the treasure chest');
             lootReveal.hidden = isOpen;
             chestPrompt.textContent = isOpen ? '[ CLICK TO OPEN ]' : '[ LOOT ACQUIRED! ]';
+            if (!isOpen) completeQuest('chest');
         });
 
         async function startCamera() {
@@ -398,7 +488,7 @@
                 takePhotoButton.hidden = false;
                 takePhotoButton.textContent = `SNAP ${capturedPhotos.length + 1} OF 3`;
                 photoCount.textContent = `${capturedPhotos.length} / 3 PHOTOS`;
-                cameraStatus.textContent = 'Strike a pose! Nothing is uploaded or saved unless you choose to keep the strip.';
+                cameraStatus.textContent = 'Smile! Nothing is uploaded or saved unless you choose to keep the strip.';
             } catch (error) {
                 startCameraButton.disabled = false;
                 startCameraButton.hidden = false;
@@ -500,6 +590,7 @@
             downloadPhotoLink.hidden = false;
             stopCamera();
             cameraStatus.textContent = 'Three adorable snapshots! Download your little photo strip to keep it.';
+            completeQuest('photo');
         });
 
         window.addEventListener('pagehide', stopCamera);

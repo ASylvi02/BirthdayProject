@@ -738,3 +738,83 @@ body { background: #211334; font-size: 1.25rem; }
     .hero-copy > h1 { font-size: 4.4rem; }
     .hero-copy .player-hud { margin-bottom: 16px; }
 }
+
+.achievement-tracker {
+    max-width: 940px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 245px;
+    align-items: center;
+    gap: 22px;
+    margin: 0 auto 30px;
+    padding: 17px 20px;
+    border: 3px solid #6d4c91;
+    border-left: 7px solid #d9a8ff;
+    background: #302044;
+    box-shadow: 6px 6px 0 #120b1d;
+}
+.achievement-heading { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-bottom: 10px; }
+.achievement-heading .eyebrow { margin: 0 0 5px; font-size: .42rem; }
+.achievement-heading h2 { margin: 0; color: #fff4ff; font-family: 'VT323', monospace; font-size: 1.8rem; font-weight: 400; line-height: 1; text-transform: uppercase; }
+.quest-count { color: #ffe17a; font-family: 'Press Start 2P', monospace; font-size: .56rem; white-space: nowrap; }
+.quest-progress { height: 15px; overflow: hidden; border: 2px solid #8e67b5; background: #211334; }
+.quest-progress-fill { width: 0; height: 100%; display: block; background: repeating-linear-gradient(90deg, #72edac 0 18px, #35a66c 18px 22px); box-shadow: inset 0 -3px 0 rgba(18,11,29,.25); transition: width .45s steps(6, end); }
+.quest-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 9px 0 0; padding: 0; list-style: none; }
+.quest-steps li { min-width: 0; display: flex; align-items: center; gap: 5px; color: #bda9d1; font-family: 'Press Start 2P', monospace; font-size: .33rem; line-height: 1.7; }
+.quest-step-check { color: #72edac; opacity: 0; transform: scale(.5); transition: opacity .2s, transform .2s; }
+.quest-steps li.is-complete { color: #fff4ff; }
+.quest-steps li.is-complete .quest-step-check { opacity: 1; transform: scale(1); }
+.badge-award { min-width: 0; min-height: 84px; display: flex; align-items: center; gap: 11px; padding: 10px; border: 2px dashed #6d4c91; background: #211334; }
+.badge-emblem { width: 48px; height: 48px; flex: 0 0 48px; display: grid; place-items: center; border: 3px solid #6d4c91; color: #806b91; background: #302044; font-size: 1.8rem; }
+.badge-copy { min-width: 0; display: grid; gap: 5px; }
+.badge-copy small { color: #bda9d1; font-family: 'Press Start 2P', monospace; font-size: .34rem; }
+.badge-copy strong { color: #806b91; font-family: 'Press Start 2P', monospace; font-size: .39rem; line-height: 1.7; }
+.badge-copy > span { color: #d3c1e9; font-size: .9rem; line-height: 1; }
+.badge-award.is-unlocked { border-color: #ffe17a; background: #382451; animation: badge-unlock .45s steps(5, end) both; }
+.badge-award.is-unlocked .badge-emblem { border-color: #ffe17a; color: #211334; background: #ff75c8; box-shadow: 3px 3px 0 #c54c98; animation: badge-spin .8s steps(4, end) 2; }
+.badge-award.is-unlocked .badge-copy strong { color: #ffe17a; }
+@keyframes badge-unlock { from { opacity: .4; transform: translateY(8px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes badge-spin { 50% { rotate: 12deg; scale: 1.12; } }
+.has-badge-popup { overflow: hidden; }
+.badge-popup {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    background: rgba(12, 6, 20, .84);
+    backdrop-filter: blur(6px);
+}
+.badge-popup-panel {
+    width: min(500px, 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: clamp(28px, 6vw, 48px);
+    border: 4px solid #ffe17a;
+    outline: 4px solid #160d22;
+    color: #f8edff;
+    background: #382451;
+    box-shadow: 12px 12px 0 #120b1d;
+    text-align: center;
+    animation: badge-popup-enter .65s cubic-bezier(.2, .85, .25, 1.2) both;
+}
+.badge-popup-panel .eyebrow { margin-bottom: 14px; }
+.badge-popup-emblem { width: 82px; height: 82px; display: grid; place-items: center; margin-bottom: 14px; border: 4px dashed #ffe17a; color: #211334; background: #ff75c8; box-shadow: 5px 5px 0 #c54c98; font-size: 3.1rem; animation: badge-spin .8s steps(4, end) 2; }
+.badge-popup-panel h2 { margin: 0 0 12px; color: #ffe17a; font-family: 'VT323', monospace; font-size: clamp(2.8rem, 8vw, 4rem); font-weight: 400; line-height: .85; text-transform: uppercase; }
+.badge-popup-panel > p:not(.eyebrow) { max-width: 360px; margin: 0 0 22px; color: #f8edff; font-size: 1.45rem; line-height: 1.05; }
+.badge-popup-panel .booth-button { min-width: 180px; }
+@keyframes badge-popup-enter {
+    0% { opacity: 0; transform: translateY(32px) scale(.72); }
+    68% { opacity: 1; transform: translateY(-6px) scale(1.04); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (max-width: 760px) {
+    .achievement-tracker { grid-template-columns: 1fr; gap: 13px; margin: 0 0 26px; }
+}
+@media (max-width: 420px) {
+    .achievement-tracker { gap: 10px; padding: 14px 12px; }
+    .quest-steps { gap: 5px; }
+    .quest-steps li { font-size: .29rem; }
+    .badge-award { min-height: 70px; }
+}
