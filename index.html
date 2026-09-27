@@ -149,6 +149,7 @@
                     <div class="booth-screen">
                         <video id="camera-preview" autoplay playsinline muted aria-label="Live camera preview" hidden></video>
                         <img id="captured-photo" alt="Your finished three-photo birthday photostrip" hidden>
+                        <div class="photo-countdown" id="photo-countdown" aria-live="assertive" aria-atomic="true" hidden></div>
                         <div class="camera-placeholder" id="camera-placeholder" aria-hidden="true">
                             <span>☺</span>
                             <p>READY, PLAYER TWO?</p>
@@ -211,6 +212,16 @@
                 <button class="booth-button" id="badge-popup-close" type="button">CLAIM BADGE</button>
             </div>
         </div>
+        <div class="chest-opening-overlay" id="chest-opening-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="chest-opening-title" aria-describedby="chest-opening-prompt">
+            <section class="chest-opening-panel">
+                <p class="eyebrow">BONUS QUEST · TREASURE FOUND</p>
+                <h2 id="chest-opening-title">A mystery chest!</h2>
+                <div class="chest-opening-stage" id="chest-opening-stage" data-taps="0"></div>
+                <p class="chest-opening-prompt" id="chest-opening-prompt" role="status" aria-live="polite">Tap the chest 3 times to open it. 0 / 3</p>
+                <button class="booth-button" id="chest-opening-close" type="button" hidden>CLAIM YOUR LOOT</button>
+            </section>
+        </div>
+        <div class="photo-booth-overlay" id="photo-booth-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="photo-booth-title"></div>
     </main>
 
     <script>
@@ -243,11 +254,21 @@
         const retryWishButton = document.querySelector('#retry-wish');
         const confettiLayer = document.querySelector('#confetti-layer');
         const treasureChest = document.querySelector('#treasure-chest');
+        const chestAreaHome = treasureChest.parentElement;
+        const chestOpeningOverlay = document.querySelector('#chest-opening-overlay');
+        const chestOpeningStage = document.querySelector('#chest-opening-stage');
+        const chestOpeningPrompt = document.querySelector('#chest-opening-prompt');
+        const chestOpeningClose = document.querySelector('#chest-opening-close');
         const lootReveal = document.querySelector('#loot-reveal');
         const chestPrompt = document.querySelector('#chest-prompt');
+        const photoBooth = document.querySelector('#photo-booth');
+        const photoBoothHome = photoBooth.parentElement;
+        const photoBoothNextSibling = photoBooth.nextElementSibling;
+        const photoBoothOverlay = document.querySelector('#photo-booth-overlay');
         const cameraPreview = document.querySelector('#camera-preview');
         const capturedPhoto = document.querySelector('#captured-photo');
         const boothScreen = document.querySelector('.booth-screen');
+        const photoCountdown = document.querySelector('#photo-countdown');
         const cameraPlaceholder = document.querySelector('#camera-placeholder');
         const cameraStatus = document.querySelector('#camera-status');
         const startCameraButton = document.querySelector('#start-camera');
@@ -260,6 +281,11 @@
         const photoCount = document.querySelector('#photo-count');
         const capturedPhotos = [];
         let cameraStream;
+        let chestClickCount = 0;
+        let chestOpenTimer;
+        let chestLootReady = false;
+        let chestQuestCompleted = false;
+        let photoCountdownToken = 0;
 
         unlockForm.addEventListener('submit', (event) => {
             event.preventDefault();
@@ -344,7 +370,7 @@
         function closeBadgePopup() {
             if (badgePopup.hidden) return;
             badgePopup.hidden = true;
-            birthdayScreen.inert = false;
+            birthdayScreen.inert = !photoBoothOverlay.hidden;
             document.body.classList.remove('has-badge-popup');
             badgeAward.focus();
         }
@@ -446,6 +472,8 @@
         document.addEventListener('keydown', (event) => {
             if (event.key !== 'Escape') return;
             if (!badgePopup.hidden) closeBadgePopup();
+            else if (!photoBoothOverlay.hidden) stopCameraButton.click();
+            else if (!chestOpeningOverlay.hidden && chestLootReady) closeChestOverlay();
             else if (!wishOverlay.hidden) wishExitButton.click();
         });
         badgePopupClose.addEventListener('click', closeBadgePopup);
@@ -453,13 +481,71 @@
             if (event.target === badgePopup) closeBadgePopup();
         });
 
-        treasureChest.addEventListener('click', () => {
-            const isOpen = treasureChest.getAttribute('aria-expanded') === 'true';
-            treasureChest.setAttribute('aria-expanded', String(!isOpen));
-            treasureChest.setAttribute('aria-label', isOpen ? 'Open the treasure chest' : 'Close the treasure chest');
-            lootReveal.hidden = isOpen;
-            chestPrompt.textContent = isOpen ? '[ CLICK TO OPEN ]' : '[ LOOT ACQUIRED! ]';
-            if (!isOpen) completeQuest('chest');
+        function handleChestClick() {
+            if (chestQuestCompleted || chestLootReady) return;
+
+            if (chestOpeningOverlay.hidden) {
+                chestClickCount = 0;
+                chestOpeningStage.append(treasureChest, lootReveal);
+                chestPrompt.hidden = true;
+                lootReveal.hidden = true;
+                chestOpeningClose.hidden = true;
+                chestOpeningOverlay.hidden = false;
+                birthdayScreen.inert = true;
+                document.body.classList.add('is-opening-chest');
+            }
+
+            chestClickCount += 1;
+            chestOpeningStage.dataset.taps = String(chestClickCount);
+            chestOpeningPrompt.textContent = chestClickCount < 3
+                ? `Tap the chest 3 times to open it. ${chestClickCount} / 3`
+                : 'The chest is opening...';
+            treasureChest.setAttribute('aria-label', `Charge the treasure chest, ${chestClickCount} of 3`);
+            treasureChest.classList.remove('is-shaking');
+            void treasureChest.offsetWidth;
+            treasureChest.classList.add('is-shaking');
+
+            if (chestClickCount === 3) {
+                treasureChest.disabled = true;
+                chestOpenTimer = window.setTimeout(() => {
+                    treasureChest.setAttribute('aria-expanded', 'true');
+                    treasureChest.setAttribute('aria-label', 'Treasure chest opened');
+                    chestOpeningStage.classList.add('is-loot-open');
+                    lootReveal.hidden = false;
+                    chestOpeningPrompt.textContent = 'LOOT FOUND! Claim your prize to continue.';
+                    chestOpeningClose.hidden = false;
+                    chestLootReady = true;
+                    chestOpeningClose.focus();
+                }, 500);
+            }
+        }
+
+        function closeChestOverlay() {
+            if (!chestLootReady) return;
+
+            window.clearTimeout(chestOpenTimer);
+            chestOpeningOverlay.hidden = true;
+            document.body.classList.remove('is-opening-chest');
+            birthdayScreen.inert = false;
+            chestOpeningStage.classList.remove('is-loot-open');
+            chestOpeningStage.dataset.taps = '0';
+            chestAreaHome.insertBefore(treasureChest, chestPrompt);
+            chestAreaHome.append(lootReveal);
+            chestPrompt.hidden = false;
+            chestPrompt.textContent = '[ LOOT ACQUIRED! ]';
+            treasureChest.disabled = false;
+            treasureChest.classList.remove('is-shaking');
+            treasureChest.setAttribute('aria-label', 'Treasure chest opened');
+            chestQuestCompleted = true;
+            chestLootReady = false;
+            completeQuest('chest');
+            if (badgePopup.hidden) treasureChest.focus();
+        }
+
+        treasureChest.addEventListener('click', handleChestClick);
+        chestOpeningClose.addEventListener('click', closeChestOverlay);
+        chestOpeningOverlay.addEventListener('click', (event) => {
+            if (event.target === chestOpeningOverlay && chestLootReady) closeChestOverlay();
         });
 
         async function startCamera() {
@@ -489,6 +575,12 @@
                 takePhotoButton.textContent = `SNAP ${capturedPhotos.length + 1} OF 3`;
                 photoCount.textContent = `${capturedPhotos.length} / 3 PHOTOS`;
                 cameraStatus.textContent = 'Smile! Nothing is uploaded or saved unless you choose to keep the strip.';
+                stopCameraButton.textContent = 'TURN CAMERA OFF';
+                photoBoothOverlay.append(photoBooth);
+                photoBoothOverlay.hidden = false;
+                birthdayScreen.inert = true;
+                document.body.classList.add('is-photo-booth');
+                takePhotoButton.focus();
             } catch (error) {
                 startCameraButton.disabled = false;
                 startCameraButton.hidden = false;
@@ -499,10 +591,15 @@
             }
         }
 
-        function stopCamera() {
+        function stopCameraStream() {
             cameraStream?.getTracks().forEach((track) => track.stop());
             cameraStream = undefined;
             cameraPreview.srcObject = null;
+        }
+
+        function stopCamera() {
+            cancelPhotoCountdown();
+            stopCameraStream();
             takePhotoButton.disabled = true;
             stopCameraButton.hidden = true;
         }
@@ -523,17 +620,76 @@
         stopCameraButton.addEventListener('click', () => {
             stopCamera();
             cameraPreview.hidden = true;
+            photoCountdown.hidden = true;
+            photoBoothOverlay.hidden = true;
+            birthdayScreen.inert = false;
+            document.body.classList.remove('is-photo-booth');
+            photoBoothHome.insertBefore(photoBooth, photoBoothNextSibling);
+
+            if (capturedPhotos.length === 3) {
+                capturedPhoto.hidden = false;
+                cameraPlaceholder.hidden = true;
+                boothScreen.classList.add('is-strip');
+                retakePhotoButton.hidden = false;
+                downloadPhotoLink.hidden = false;
+                startCameraButton.hidden = true;
+                takePhotoButton.hidden = true;
+                cameraStatus.textContent = 'Photo booth closed. Your finished strip is ready to save or start over.';
+                retakePhotoButton.focus();
+                return;
+            }
+
+            capturedPhoto.hidden = true;
             cameraPlaceholder.hidden = false;
+            boothScreen.classList.remove('is-strip');
             startCameraButton.hidden = false;
             startCameraButton.disabled = false;
-            retakePhotoButton.hidden = true;
+            takePhotoButton.hidden = true;
+            retakePhotoButton.hidden = capturedPhotos.length === 0;
+            downloadPhotoLink.hidden = true;
             cameraStatus.textContent = 'Camera off. Your photo booth is ready whenever you are.';
+            startCameraButton.focus();
         });
 
-        takePhotoButton.addEventListener('click', () => {
+        function cancelPhotoCountdown() {
+            photoCountdownToken += 1;
+            photoCountdown.hidden = true;
+            photoCountdown.textContent = '';
+            photoCountdown.classList.remove('is-counting');
+        }
+
+        async function takePhotoWithCountdown() {
+            if (takePhotoButton.disabled || !cameraStream) return;
+
+            const countdownToken = ++photoCountdownToken;
+            const countdownSteps = ['3', '2', '1', 'SMILE!'];
+            takePhotoButton.disabled = true;
+            takePhotoButton.textContent = 'GET READY...';
+            cameraStatus.textContent = `Photo ${capturedPhotos.length + 1} of 3. Get ready!`;
+
+            for (const [index, step] of countdownSteps.entries()) {
+                if (countdownToken !== photoCountdownToken) return;
+                photoCountdown.textContent = step;
+                photoCountdown.hidden = false;
+                photoCountdown.classList.remove('is-counting');
+                void photoCountdown.offsetWidth;
+                photoCountdown.classList.add('is-counting');
+                await new Promise((resolve) => window.setTimeout(resolve, index === countdownSteps.length - 1 ? 300 : 700));
+            }
+
+            if (countdownToken !== photoCountdownToken) return;
+            photoCountdown.hidden = true;
+            const didCapture = capturePhoto();
+            if (!didCapture && cameraStream) takePhotoButton.disabled = false;
+            if (cameraStream && capturedPhotos.length < 3) takePhotoButton.disabled = false;
+        }
+
+        takePhotoButton.addEventListener('click', takePhotoWithCountdown);
+
+        function capturePhoto() {
             if (!cameraPreview.videoWidth || !cameraPreview.videoHeight) {
                 cameraStatus.textContent = 'One sec! The camera is still getting ready.';
-                return;
+                return false;
             }
 
             photoCanvas.width = cameraPreview.videoWidth;
@@ -572,7 +728,10 @@
                 cameraStatus.textContent = capturedPhotos.length === 1
                     ? 'One down! Give me your silliest face next.'
                     : 'Two down! One last birthday pose!';
-                return;
+                boothScreen.classList.remove('is-flash');
+                void boothScreen.offsetWidth;
+                boothScreen.classList.add('is-flash');
+                return true;
             }
 
             stripContext.fillStyle = '#382451';
@@ -588,10 +747,15 @@
             startCameraButton.hidden = true;
             retakePhotoButton.hidden = false;
             downloadPhotoLink.hidden = false;
-            stopCamera();
+            boothScreen.classList.remove('is-flash');
+            void boothScreen.offsetWidth;
+            boothScreen.classList.add('is-flash');
+            stopCameraStream();
+            stopCameraButton.textContent = 'BACK TO BIRTHDAY WORLD';
             cameraStatus.textContent = 'Three adorable snapshots! Download your little photo strip to keep it.';
             completeQuest('photo');
-        });
+            return true;
+        }
 
         window.addEventListener('pagehide', stopCamera);
     </script>
