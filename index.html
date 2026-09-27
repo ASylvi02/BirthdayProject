@@ -75,6 +75,11 @@
                             <span class="menu-option-copy"><small>EXTRA QUEST</small><strong>PHOTO BOOTH</strong></span>
                             <kbd>GO</kbd>
                         </a>
+                        <a class="game-menu-option" href="#music-lab" data-menu-status="BASSLINE LAB SELECTED">
+                            <span class="menu-arrow" aria-hidden="true">▶</span>
+                            <span class="menu-option-copy"><small>MUSIC QUEST</small><strong>BASSLINE LAB</strong></span>
+                            <kbd>GO</kbd>
+                        </a>
                         <a class="game-menu-option" href="#bonus-stage" data-menu-status="BONUS LOOT SELECTED">
                             <span class="menu-arrow" aria-hidden="true">▶</span>
                             <span class="menu-option-copy"><small>HIDDEN AREA</small><strong>FIND THE CHEST</strong></span>
@@ -93,20 +98,21 @@
                             <p class="eyebrow">ACHIEVEMENT TRACKER</p>
                             <h2 id="achievement-title">Clear every quest</h2>
                         </div>
-                        <span class="quest-count" id="quest-count" aria-live="polite">0 / 3</span>
+                        <span class="quest-count" id="quest-count" aria-live="polite">0 / 4</span>
                     </div>
-                    <div class="quest-progress" id="quest-progress" role="progressbar" aria-label="Birthday quests completed" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0" aria-valuetext="0 of 3 quests complete">
+                    <div class="quest-progress" id="quest-progress" role="progressbar" aria-label="Birthday quests completed" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0" aria-valuetext="0 of 4 quests complete">
                         <span class="quest-progress-fill" id="quest-progress-fill"></span>
                     </div>
                     <ol class="quest-steps">
                         <li data-quest-step="wish"><span class="quest-step-check" aria-hidden="true">✓</span><span>MAKE A WISH</span></li>
                         <li data-quest-step="photo"><span class="quest-step-check" aria-hidden="true">✓</span><span>PHOTO STRIP</span></li>
                         <li data-quest-step="chest"><span class="quest-step-check" aria-hidden="true">✓</span><span>OPEN THE CHEST</span></li>
+                        <li data-quest-step="music"><span class="quest-step-check" aria-hidden="true">✓</span><span>BASSLINE</span></li>
                     </ol>
                 </div>
                 <div class="badge-award" id="badge-award" role="status" aria-live="polite" tabindex="-1">
                     <span class="badge-emblem" aria-hidden="true">★</span>
-                    <span class="badge-copy"><small>FINAL BADGE</small><strong id="badge-name">LOCKED</strong><span id="badge-message">Clear all three quests to unlock.</span></span>
+                    <span class="badge-copy"><small>FINAL BADGE</small><strong id="badge-name">LOCKED</strong><span id="badge-message">Clear all four quests to unlock.</span></span>
                 </div>
             </section>
 
@@ -120,20 +126,19 @@
                     <div class="cake-note">ITEM GET!<br>★ CAKE ★</div>
                     <div class="cake-sparkle sparkle-left" aria-hidden="true">✦</div>
                     <div class="cake-sparkle sparkle-right" aria-hidden="true">✳</div>
-                    <div class="cake" id="cake" role="group" aria-label="Birthday cake with three candles">
+                    <p class="cake-flavor">Here is something I thought you'd like: a chocolate bomb cake!</p>
+                    <div class="cake" id="cake" role="group" aria-label="Dome-shaped chocolate bomb cake with three candles">
                         <div class="candles" aria-label="Candles. Click a flame to blow it out.">
                             <button class="candle" type="button" aria-label="Blow out candle 1"><span class="flame"></span><span class="wick"></span><span class="candle-body"></span></button>
                             <button class="candle" type="button" aria-label="Blow out candle 2"><span class="flame"></span><span class="wick"></span><span class="candle-body"></span></button>
                             <button class="candle" type="button" aria-label="Blow out candle 3"><span class="flame"></span><span class="wick"></span><span class="candle-body"></span></button>
                         </div>
-                        <div class="cake-top"><span class="icing-drip drip-one"></span><span class="icing-drip drip-two"></span><span class="icing-drip drip-three"></span></div>
-                        <div class="cake-layer cake-layer-top"><i></i><i></i><i></i></div>
-                        <div class="cake-layer cake-layer-bottom"><i></i><i></i><i></i><i></i></div>
+                        <div class="chocolate-bomb" aria-hidden="true"><span class="bomb-drizzle drizzle-one"></span><span class="bomb-drizzle drizzle-two"></span><span class="bomb-drizzle drizzle-three"></span><span class="bomb-drizzle drizzle-four"></span></div>
+                        <div class="chocolate-base" aria-hidden="true"></div>
                         <div class="cake-plate"></div>
                     </div>
                     <p class="cake-instruction" id="cake-message" aria-live="polite">A LITTLE CAKE, AND A WISH JUST FOR YOU.</p>
                     <button class="blow-button" id="begin-wish" type="button"><span aria-hidden="true">★</span> BEGIN MAKING A WISH</button>
-                    <button class="blow-button" id="blow-button" type="button" hidden><span aria-hidden="true">★</span> BLOW OUT THE CANDLES</button>
                     <button class="wish-exit" id="wish-exit" type="button" hidden>BACK TO THE PARTY</button>
                     <button class="blow-button" id="retry-wish" type="button" hidden><span aria-hidden="true">★</span> MAKE ANOTHER WISH?</button>
                 </div>
@@ -169,6 +174,35 @@
                 <canvas id="photostrip-canvas" hidden></canvas>
             </section>
 
+            <section class="music-lab game-reveal" id="music-lab" aria-labelledby="music-lab-title">
+                <div class="music-lab-copy">
+                    <p class="eyebrow">EXTRA QUEST · LOW-END LAB</p>
+                    <h2 id="music-lab-title">Decode the bassline</h2>
+                    <p>Listen to each riff, then echo it back. Three levels with longer patterns each time! I know you like your nerdy music stuff. Don't judge too hard though, I had to ask AI about music stuff for this. :(</p>
+                    <div class="music-specs"><span>4-STRING BASS</span><span>OPEN E2 = 82.4 HZ</span></div>
+                </div>
+                <div class="music-console">
+                    <div class="music-console-header"><span>SUB BASS / TRAINING MODE</span><span id="bass-level-label">LEVEL 1 / 3</span></div>
+                    <div class="music-readout">
+                        <div class="music-visualizer" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                        <p id="bass-status" role="status" aria-live="polite">LEVEL 1: PRESS PLAY, THEN ECHO THE RIFF.</p>
+                    </div>
+                    <ol class="bassline-meter" aria-label="Bassline notes matched">
+                        <li data-bass-step="0"></li><li data-bass-step="1"></li><li data-bass-step="2"></li><li data-bass-step="3"></li><li data-bass-step="4" hidden></li><li data-bass-step="5" hidden></li><li data-bass-step="6" hidden></li><li data-bass-step="7" hidden></li>
+                    </ol>
+                    <div class="bass-console-controls">
+                        <button class="booth-button bass-play" id="play-bass-riff" type="button"><span aria-hidden="true">♫</span> PLAY LEVEL 1 RIFF</button>
+                        <span class="bass-progress" id="bass-progress" aria-live="polite">0 / 4 NOTES</span>
+                    </div>
+                    <div class="bass-pads" role="group" aria-label="Bass note pads">
+                        <button class="bass-pad" type="button" data-note="E2"><kbd>1</kbd><strong>E2</strong><small>82.4 HZ</small></button>
+                        <button class="bass-pad" type="button" data-note="G2"><kbd>2</kbd><strong>G2</strong><small>98.0 HZ</small></button>
+                        <button class="bass-pad" type="button" data-note="A2"><kbd>3</kbd><strong>A2</strong><small>110.0 HZ</small></button>
+                        <button class="bass-pad" type="button" data-note="D3"><kbd>4</kbd><strong>D3</strong><small>146.8 HZ</small></button>
+                    </div>
+                </div>
+            </section>
+
             <section class="bonus-stage game-reveal" id="bonus-stage" aria-labelledby="bonus-title">
                 <div class="bonus-copy">
                     <p class="eyebrow">I HID YOU A PRESENT!</p>
@@ -192,7 +226,7 @@
                 <div class="letter-mark" aria-hidden="true">♥</div>
                 <div class="letter-content">
                     <p class="eyebrow">QUEST LOG: A NOTE FOR YOU</p>
-                    <h2 id="letter-title">To my favorite person,</h2>
+                    <h2 id="letter-title" tabindex="-1">To my favorite person,</h2>
                     <p>Kyle, every adventure and memory has been better with you in it. Thank you for making even ordinary days feel special. I love you, and I hope this next trip around the sun brings you a whole inventory of good things!! (And yes, I will still be there to annoy you every second)</p>
                     <p class="letter-signoff">That one annoying person, <span>Aubrey</span></p>
                 </div>
@@ -212,6 +246,11 @@
                 <button class="booth-button" id="badge-popup-close" type="button">CLAIM BADGE</button>
             </div>
         </div>
+        <a class="note-nudge" id="note-nudge" href="#letter-title" hidden>
+            <span class="note-nudge-arrow" aria-hidden="true">↓</span>
+            <span class="note-nudge-copy"><small>FINAL QUEST</small><strong>READ YOUR NOTE</strong></span>
+            <span class="note-nudge-action">VIEW</span>
+        </a>
         <div class="chest-opening-overlay" id="chest-opening-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="chest-opening-title" aria-describedby="chest-opening-prompt">
             <section class="chest-opening-panel">
                 <p class="eyebrow">BONUS QUEST · TREASURE FOUND</p>
@@ -238,6 +277,7 @@
         const menuStartWishButton = document.querySelector('#menu-start-wish');
         const menuStatusText = document.querySelector('#menu-status-text');
         const completedQuests = new Set();
+        const questTotal = 4;
         const questProgress = document.querySelector('#quest-progress');
         const questProgressFill = document.querySelector('#quest-progress-fill');
         const questCount = document.querySelector('#quest-count');
@@ -247,15 +287,38 @@
         const badgePopup = document.querySelector('#badge-popup');
         const badgePopupName = document.querySelector('#badge-popup-name');
         const badgePopupClose = document.querySelector('#badge-popup-close');
+        const noteNudge = document.querySelector('#note-nudge');
+        const letterSection = document.querySelector('.letter-section');
+        const letterTitle = document.querySelector('#letter-title');
+        let noteWasVisited = false;
+        const bassStatus = document.querySelector('#bass-status');
+        const bassProgress = document.querySelector('#bass-progress');
+        const bassLevelLabel = document.querySelector('#bass-level-label');
+        const playBassRiffButton = document.querySelector('#play-bass-riff');
+        const musicConsole = document.querySelector('.music-console');
+        const bassPads = [...document.querySelectorAll('.bass-pad')];
+        const bassSteps = [...document.querySelectorAll('[data-bass-step]')];
+        const bassMeter = document.querySelector('.bassline-meter');
+        const bassLevels = [
+            { notes: ['E2', 'G2', 'A2', 'G2'] },
+            { notes: ['E2', 'A2', 'G2', 'D3', 'A2'] },
+            { notes: ['E2', 'G2', 'A2', 'D3', 'G2', 'D3', 'A2', 'E2'] }
+        ];
+        const bassFrequencies = { E2: 82.41, G2: 98, A2: 110, D3: 146.83 };
+        let bassAudioContext;
+        let bassLevelIndex = 0;
+        let bassRiffProgress = 0;
+        let bassPlaybackToken = 0;
+        let bassGameComplete = false;
         const candles = [...document.querySelectorAll('.candle')];
         const cakeMessage = document.querySelector('#cake-message');
-        const blowButton = document.querySelector('#blow-button');
         const wishExitButton = document.querySelector('#wish-exit');
         const retryWishButton = document.querySelector('#retry-wish');
         const confettiLayer = document.querySelector('#confetti-layer');
         const treasureChest = document.querySelector('#treasure-chest');
         const chestAreaHome = treasureChest.parentElement;
         const chestOpeningOverlay = document.querySelector('#chest-opening-overlay');
+        const chestOpeningPanel = document.querySelector('.chest-opening-panel');
         const chestOpeningStage = document.querySelector('#chest-opening-stage');
         const chestOpeningPrompt = document.querySelector('#chest-opening-prompt');
         const chestOpeningClose = document.querySelector('#chest-opening-close');
@@ -326,6 +389,10 @@
                     if (!entry.isIntersecting) return;
                     entry.target.classList.add('is-visible');
                     entry.target.classList.remove('is-pending');
+                    if (entry.target === letterSection) {
+                        noteWasVisited = true;
+                        noteNudge.hidden = true;
+                    }
                     observer.unobserve(entry.target);
                 });
             }, { threshold: 0.12 });
@@ -341,15 +408,15 @@
 
             completedQuests.add(quest);
             const completedCount = completedQuests.size;
-            const questNames = { wish: 'WISH', photo: 'PHOTO STRIP', chest: 'CHEST' };
+            const questNames = { wish: 'WISH', photo: 'PHOTO STRIP', chest: 'CHEST', music: 'BASSLINE' };
             document.querySelector(`[data-quest-step="${quest}"]`).classList.add('is-complete');
-            questCount.textContent = `${completedCount} / 3`;
+            questCount.textContent = `${completedCount} / ${questTotal}`;
             questProgress.setAttribute('aria-valuenow', String(completedCount));
-            questProgress.setAttribute('aria-valuetext', `${completedCount} of 3 quests complete`);
-            questProgressFill.style.width = `${completedCount / 3 * 100}%`;
-            menuStatusText.textContent = `${questNames[quest]} QUEST CLEARED · ${completedCount}/3`;
+            questProgress.setAttribute('aria-valuetext', `${completedCount} of ${questTotal} quests complete`);
+            questProgressFill.style.width = `${completedCount / questTotal * 100}%`;
+            menuStatusText.textContent = `${questNames[quest]} QUEST CLEARED · ${completedCount}/${questTotal}`;
 
-            if (completedCount === 3) {
+            if (completedCount === questTotal) {
                 const unlockedBadgeName = 'BIRTHDAY WORLD LEGEND';
                 badgeName.textContent = unlockedBadgeName;
                 badgePopupName.textContent = unlockedBadgeName;
@@ -359,6 +426,131 @@
                 showBadgePopup();
             }
         }
+
+        function getBassAudioContext() {
+            const AudioContextConstructor = window.AudioContext || window.webkitAudioContext;
+            if (!AudioContextConstructor) return null;
+            if (!bassAudioContext) bassAudioContext = new AudioContextConstructor();
+            return bassAudioContext;
+        }
+
+        async function playBassNote(note) {
+            const context = getBassAudioContext();
+            if (!context) return false;
+
+            try {
+                if (context.state === 'suspended') await context.resume();
+            } catch {
+                bassStatus.textContent = 'AUDIO IS MUTED. CHECK YOUR BROWSER SOUND SETTINGS.';
+                return false;
+            }
+
+            const startAt = context.currentTime;
+            const oscillator = context.createOscillator();
+            const filter = context.createBiquadFilter();
+            const envelope = context.createGain();
+            oscillator.type = 'sawtooth';
+            oscillator.frequency.setValueAtTime(bassFrequencies[note], startAt);
+            filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(720, startAt);
+            envelope.gain.setValueAtTime(.0001, startAt);
+            envelope.gain.exponentialRampToValueAtTime(.24, startAt + .018);
+            envelope.gain.exponentialRampToValueAtTime(.0001, startAt + .42);
+            oscillator.connect(filter);
+            filter.connect(envelope);
+            envelope.connect(context.destination);
+            oscillator.start(startAt);
+            oscillator.stop(startAt + .44);
+            return true;
+        }
+
+        function updateBassProgress() {
+            const riff = bassLevels[bassLevelIndex].notes;
+            bassMeter.style.gridTemplateColumns = `repeat(${riff.length}, minmax(0, 1fr))`;
+            bassProgress.textContent = `${bassRiffProgress} / ${riff.length} NOTES`;
+            bassSteps.forEach((step, index) => {
+                step.hidden = index >= riff.length;
+                step.classList.toggle('is-hit', index < bassRiffProgress);
+            });
+        }
+
+        async function playBassRiff() {
+            if (bassGameComplete) return;
+            if (!getBassAudioContext()) {
+                bassStatus.textContent = 'THIS BROWSER DOES NOT SUPPORT AUDIO PLAYBACK.';
+                return;
+            }
+
+            const playbackToken = ++bassPlaybackToken;
+            const riff = bassLevels[bassLevelIndex].notes;
+            playBassRiffButton.disabled = true;
+            bassPads.forEach((pad) => { pad.disabled = true; });
+            musicConsole.classList.add('is-playing');
+            bassStatus.textContent = `LISTEN CLOSELY: LEVEL ${bassLevelIndex + 1}...`;
+
+            for (const note of riff) {
+                if (playbackToken !== bassPlaybackToken) return;
+                const activePad = bassPads.find((pad) => pad.dataset.note === note);
+                activePad.classList.add('is-playing');
+                await playBassNote(note);
+                await new Promise((resolve) => window.setTimeout(resolve, 470));
+                activePad.classList.remove('is-playing');
+            }
+
+            if (playbackToken !== bassPlaybackToken) return;
+            musicConsole.classList.remove('is-playing');
+            playBassRiffButton.disabled = false;
+            bassPads.forEach((pad) => { pad.disabled = false; });
+            bassStatus.textContent = `YOUR TURN: ECHO THE LEVEL ${bassLevelIndex + 1} RIFF.`;
+        }
+
+        playBassRiffButton.addEventListener('click', playBassRiff);
+        bassPads.forEach((pad) => pad.addEventListener('click', () => {
+            if (bassGameComplete) return;
+            void playBassNote(pad.dataset.note);
+            pad.classList.remove('is-hit', 'is-wrong');
+            void pad.offsetWidth;
+            pad.classList.add('is-hit');
+
+            const riff = bassLevels[bassLevelIndex].notes;
+            if (pad.dataset.note !== riff[bassRiffProgress]) {
+                bassRiffProgress = 0;
+                updateBassProgress();
+                bassPads.forEach((notePad) => notePad.classList.remove('is-hit', 'is-wrong'));
+                bassStatus.textContent = `OFFBEAT! LEVEL ${bassLevelIndex + 1} RESETS. REPLAY AND TRY AGAIN.`;
+                pad.classList.add('is-wrong');
+                return;
+            }
+
+            bassRiffProgress += 1;
+            updateBassProgress();
+            if (bassRiffProgress === riff.length) {
+                if (bassLevelIndex < bassLevels.length - 1) {
+                    bassLevelIndex += 1;
+                    bassRiffProgress = 0;
+                    bassPads.forEach((notePad) => notePad.classList.remove('is-hit', 'is-wrong'));
+                    bassLevelLabel.textContent = `LEVEL ${bassLevelIndex + 1} / ${bassLevels.length}`;
+                    playBassRiffButton.innerHTML = `<span aria-hidden="true">♫</span> PLAY LEVEL ${bassLevelIndex + 1} RIFF`;
+                    updateBassProgress();
+                    bassStatus.textContent = `LEVEL ${bassLevelIndex} CLEARED! LEVEL ${bassLevelIndex + 1} UNLOCKED.`;
+                    return;
+                }
+
+                bassGameComplete = true;
+                bassStatus.textContent = 'ALL THREE RIFFS DECODED! CLEAN PLAYING.';
+                playBassRiffButton.disabled = true;
+                bassPads.forEach((notePad) => { notePad.disabled = true; });
+                completeQuest('music');
+                return;
+            }
+
+            bassStatus.textContent = `${bassRiffProgress} NOTE${bassRiffProgress === 1 ? '' : 'S'} LOCKED IN...`;
+        }));
+
+        document.addEventListener('keydown', (event) => {
+            if (!/^[1-4]$/.test(event.key) || !document.querySelector('#music-lab').contains(document.activeElement)) return;
+            bassPads[Number(event.key) - 1].click();
+        });
 
         function showBadgePopup() {
             badgePopup.hidden = false;
@@ -372,8 +564,20 @@
             badgePopup.hidden = true;
             birthdayScreen.inert = !photoBoothOverlay.hidden;
             document.body.classList.remove('has-badge-popup');
-            badgeAward.focus();
+            if (noteWasVisited) {
+                letterTitle.focus({ preventScroll: true });
+                return;
+            }
+
+            noteNudge.hidden = false;
+            noteNudge.focus({ preventScroll: true });
         }
+
+        noteNudge.addEventListener('click', () => {
+            noteWasVisited = true;
+            noteNudge.hidden = true;
+            if (!photoBoothOverlay.hidden) stopCameraButton.click();
+        });
 
         let celebrationTimer;
 
@@ -383,8 +587,6 @@
                 candle.setAttribute('aria-label', `Blow out candle ${index + 1}`);
             });
             cakeMessage.textContent = 'A LITTLE CAKE, AND A WISH JUST FOR YOU.';
-            blowButton.disabled = false;
-            blowButton.innerHTML = '<span aria-hidden="true">★</span> BLOW OUT THE CANDLES';
         }
 
         function leaveWishMode() {
@@ -396,9 +598,9 @@
 
         function beginWish() {
             resetWish();
+            cakeMessage.textContent = 'Click each candle individually to blow it out and make your wish!';
             beginWishButton.hidden = true;
             retryWishButton.hidden = true;
-            blowButton.hidden = false;
             wishExitButton.hidden = false;
             wishOverlay.hidden = false;
             wishOverlay.append(cakeStage);
@@ -435,7 +637,6 @@
                 candle.setAttribute('aria-label', 'Candle is out');
             });
             cakeMessage.textContent = 'Wish made. May this be your brightest year yet!';
-            blowButton.hidden = true;
             wishExitButton.hidden = true;
             beginWishButton.hidden = true;
             retryWishButton.hidden = false;
@@ -460,11 +661,9 @@
             });
         });
         retryWishButton.addEventListener('click', beginWish);
-        blowButton.addEventListener('click', finishWish);
         wishExitButton.addEventListener('click', () => {
             leaveWishMode();
             resetWish();
-            blowButton.hidden = true;
             wishExitButton.hidden = true;
             beginWishButton.hidden = false;
             beginWishButton.focus();
@@ -493,6 +692,10 @@
                 chestOpeningOverlay.hidden = false;
                 birthdayScreen.inert = true;
                 document.body.classList.add('is-opening-chest');
+                chestOpeningPrompt.textContent = 'Tap the chest 3 times to open it. 0 / 3';
+                treasureChest.setAttribute('aria-label', 'Charge the treasure chest, 0 of 3');
+                treasureChest.focus();
+                return;
             }
 
             chestClickCount += 1;
@@ -510,6 +713,7 @@
                 chestOpenTimer = window.setTimeout(() => {
                     treasureChest.setAttribute('aria-expanded', 'true');
                     treasureChest.setAttribute('aria-label', 'Treasure chest opened');
+                    chestOpeningPanel.classList.add('is-open');
                     chestOpeningStage.classList.add('is-loot-open');
                     lootReveal.hidden = false;
                     chestOpeningPrompt.textContent = 'LOOT FOUND! Claim your prize to continue.';
@@ -527,6 +731,7 @@
             chestOpeningOverlay.hidden = true;
             document.body.classList.remove('is-opening-chest');
             birthdayScreen.inert = false;
+            chestOpeningPanel.classList.remove('is-open');
             chestOpeningStage.classList.remove('is-loot-open');
             chestOpeningStage.dataset.taps = '0';
             chestAreaHome.insertBefore(treasureChest, chestPrompt);
